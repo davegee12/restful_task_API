@@ -1,7 +1,7 @@
 var tasks = require('../controllers/tasks.js');
 
 module.exports = function(app){
-    app.get('/', (req, res) => {
+    app.get('/tasks', (req, res) => {
         tasks.index(req, res);
     })
     app.get('/:id', (req, res) => {
