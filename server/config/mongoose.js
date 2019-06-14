@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/restfultask');
+mongoose.connect('mongodb://localhost/task');
 mongoose.Promise = global.Promise;
 var models_path = path.join(__dirname, './../models');
 

@@ -6,10 +6,13 @@ const Task = mongoose.model('Task');
 module.exports = {
     index: (req, res) => {
         Task.find({}, (err, result) => {
+            console.log("######################################################")
+            console.log(result);
             if(err){
                 res.json({error: err})
             }
             else{
+                console.log("######################################################")
                 res.json({result: result})
             }
         })

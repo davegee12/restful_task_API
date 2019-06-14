@@ -6,4 +6,5 @@ const TaskSchema = new mongoose.Schema({
     completed: {type: Boolean},
 }, {timestamps: true});
 
-const Task = mongoose.model('Task', TaskSchema);
+mongoose.model('Task', TaskSchema);
+const Task = mongoose.model('Task');
