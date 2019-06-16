@@ -1,34 +1,48 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Restful Tasks</title>
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>Restful Tasks API</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h2>All the tasks:</h2>
-        <p *ngFor="let task of tasks"><b>{{task.title}}</b> - {{task.description}}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h2>The third task:</h2>
-        <p><b>{{task3.title}}</b> - {{task3.description}}</p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
 
-<router-outlet></router-outlet>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Restful Tasks</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Restful Tasks API</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col blue">
+          <button (click)="buttonToShowAllTasks()">Show All Tasks!</button>
+          <div *ngIf="clicked == true">
+            <h2>All the tasks:</h2>
+            <div *ngFor="let task of tasks">
+              <p><b>{{task.title}}</b> - </p>
+              <button (click)="buttonToShowDescription(task._id)">Show</button>
+            </div>
+            <div *ngIf="showTask">
+              <b>{{showTask.title}}</b> -
+              {{showTask.description}}
+              <button (click)="closeShow()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2></h2>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  </html>
+
+  <router-outlet></router-outlet>

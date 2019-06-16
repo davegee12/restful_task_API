@@ -8,20 +8,35 @@ import { HttpService } from './http.service';
 })
 export class AppComponent implements OnInit {
   title = 'public';
+  clicked = false;
+  showTask;
   tasks = [];
-  task3 = [];
+
   constructor(private _httpService: HttpService){}
   ngOnInit(){
-    this.getTasksFromService();
+    // this.getTasksFromService();
   }
   getTasksFromService(){
     let observable = this._httpService.getTasks();
     observable.subscribe(data => {
       console.log("Got our tasks!", data)
       console.log(data.result);
+      this.clicked = true;
       this.tasks = data.result;
-      this.task3 = data.result[2];
     });
+  }
+  buttonToShowAllTasks() {
+    this.getTasksFromService();
+  }
+  buttonToShowDescription(id) {
+    console.log("the ID is " + id);
+    let observable = this._httpService.getTasksByID(id);
+    observable.subscribe(data => {
+      this.showTask = data.result;
+    })
+  }
+  closeShow(){
+    this.showTask = null;
   }
 }
 
