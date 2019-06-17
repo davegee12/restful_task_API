@@ -21,4 +21,16 @@ export class HttpService {
   getTasksByID(id){
     return this._http.get(`/${id}`);
   }
+  addTask(newTask){
+    console.log("this is the service file " + newTask);
+    return this._http.post('/create', newTask);
+  }
+  updateTask(editTask){
+    console.log("this is the service file and " + editTask + " is the edit variable");
+    return this._http.put(`/${editTask._id}/update`, editTask);
+  }
+  deleteTask(deleteTask){
+    console.log("this is the service file and " + deleteTask + " is the delete variable");
+    return this._http.delete(`/${deleteTask}/delete`, deleteTask);
+  }
 }

@@ -10,11 +10,13 @@ export class AppComponent implements OnInit {
   title = 'public';
   clicked = false;
   showTask;
+  editTask: any;
   tasks = [];
+  newTask: any;
 
   constructor(private _httpService: HttpService){}
   ngOnInit(){
-    // this.getTasksFromService();
+    this.newTask = {title: "", description: ""}
   }
   getTasksFromService(){
     let observable = this._httpService.getTasks();
@@ -37,6 +39,33 @@ export class AppComponent implements OnInit {
   }
   closeShow(){
     this.showTask = null;
+  }
+  submitCreateForm() {
+    let observable = this._httpService.addTask(this.newTask);
+    observable.subscribe(data => {
+      console.log('here is the data from the post: ' + data);
+      this.newTask = {title: "", description: ""};
+    })
+  }
+  buttonToEditTask(id) {
+    console.log("the ID is " + id);
+    let observable = this._httpService.getTasksByID(id);
+    observable.subscribe(data => {
+      this.editTask = data.result;
+    })
+  }
+  submitEditForm() {
+    let observable = this._httpService.updateTask(this.editTask);
+    observable.subscribe(data => {
+      console.log('here is the data from the post: ' + data);
+      // this.editTask = {title: `${editTask.title}`, description: `${editTask.description}`};
+    })
+  }
+  buttonToDeleteTask(id) {
+    console.log("the ID is " + id);
+    let observable = this._httpService.deleteTask(id);
+    observable.subscribe(data => {
+    })
   }
 }
 

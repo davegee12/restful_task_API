@@ -37,12 +37,13 @@ module.exports = {
             }
             else{
                 console.log("Message successfully added to data")
-                res.redirect('/');
+                res.json({result: result});
             }
         })
     },
 
     update: (req, res) => {
+        console.log("this is the controller file " + req.body);
         Task.update({_id: req.params.id}, req.body, (err, result) => {
             if (err){
                 res.json({error: err})
