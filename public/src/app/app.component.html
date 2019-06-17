@@ -28,9 +28,8 @@
               <button (click)="buttonToEditTask(task._id)">Edit</button>
               <button (click)="buttonToDeleteTask(task._id)">Delete</button>
             </div>
-            <div *ngIf="showTask">
-              <b>{{showTask.title}}</b> -
-              {{showTask.description}}
+            <app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>
+            <div *ngIf="selectedTask">
               <button (click)="closeShow()">Close</button>
             </div>
             <div *ngIf="editTask">
